@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Lectures</title>
+</head>
+<body>
+    <h1>Lectures</h1>
+    <ul>
+        {% for lecture in lectures %}
+        <li>
+            <h2>{{ lecture.title }}</h2>
+            <p>{{ lecture.content }}</p>
+        </li>
+        {% endfor %}
+    </ul>
+    {% if video_link %}
+    <iframe width="560" height="315" src="{{ video_link }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    {% endif %}
+</body>
+</html>

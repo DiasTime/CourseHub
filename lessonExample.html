@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CourseHub</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
+    <link rel="icon" type="image/x-icon" href="img/545646161.png" />
+    <link rel="stylesheet" href="style.css" type="text/css" />
+  </head>
+  <body>
+    <header>
+      <div class="left-side-menu">
+        <div class="logo">
+          <a href="index.html">
+            <img src="img/545646161.png" />
+            <h1 class="logo-title">Онлайн учебник</h1>
+          </a>
+        </div>
+        <div class="menu">
+          <ul class="menu-list">
+            <li class="menu-item">
+              <span><a href="index.html">Про нас</a></span>
+            </li>
+            <li class="menu-item">
+              <span><a href="aboutUs.html">Контакты</a></span>
+            </li>
+            <li class="menu-item">
+              <span><a href="index.html">Курсы</a></span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="members">
+        <ul class="members-list">
+          <li>
+            <a href="#">Войти</a>
+          </li>
+          <li>
+            <a href="#">Регистрация</a>
+          </li>
+        </ul>
+      </div>
+    </header>
+    <div class="intro">
+      <div class="lession">
+        <h1>Prompt Engineering</h1>
+        <p class="author">автор: diasochkaa Urazova / 10.03.2024</p>
+        <div class="video">
+          <iframe
+            style="box-shadow: 2px 3px 20px 2px rgb(48, 48, 48)"
+            width="970"
+            height="490"
+            src="https://www.youtube.com/embed/IYCKH0ehYEY?si=80XDVkk022SCmaGV"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+        </div>
+        <div class="chapter">
+          <div class="chapter-title">
+            <h2>Лекция: Введение в Prompt Engineering</h2>
+            <h2 id="showButton">+</h2>
+          </div>
+          <div class="chapter-content">
+            <p id="toggleContent" class="hidden">
+              Добрый день, уважаемые студенты! Сегодня мы поговорим о захватывающей и инновационной
+              области в области искусственного интеллекта - "Prompt Engineering" или "Инженерия
+              Подсказок". Эта тема стала ключевой в последние годы, открывая новые перспективы в
+              обучении моделей и создании умных систем.
+            </p>
+          </div>
+        </div>
+
+        <div class="chapter">
+          <div class="chapter-title">
+            <h2>Часть 1: Введение в Prompt Engineering</h2>
+            <h2 id="showButton">+</h2>
+          </div>
+          <div class="chapter-content hidden" id="toggleContent">
+            <h3 class="subtitle">1.1 Определение</h3>
+            <p>
+              Прежде всего, что такое Prompt Engineering? Это методология, связанная с созданием
+              эффективных и точных запросов (подсказок) для обучения и использования искусственных
+              интеллектуальных систем. Вместо того чтобы просто пытаться улучшить модель, мы активно
+              учимся создавать лучшие запросы, чтобы модель выдавала нужные нам результаты.
+            </p>
+            <h3 class="subtitle">1.2 История развития</h3>
+            <p>
+              Идея формулировки хороших запросов не нова, но недавние прорывы в области машинного
+              обучения, такие как GPT (Generative Pre-trained Transformer), сделали этот подход
+              более актуальным и мощным. Процесс обучения моделей, основанный на больших объемах
+              данных, открыл двери для более тонкого управления обучением с использованием
+              подсказок.
+            </p>
+          </div>
+        </div>
+
+        <div class="chapter">
+          <div class="chapter-title">
+            <h2>Часть 2: Принципы Prompt Engineering</h2>
+            <h2 id="showButton">+</h2>
+          </div>
+          <div class="chapter-content hidden" id="toggleContent">
+            <h3 class="subtitle">2.1 Разработка подходящих подсказок</h3>
+            <p>
+              Ключевой момент в инженерии подсказок - это умение создавать запросы, которые точно и
+              ясно формулируют задачу или требование. Это включает в себя использование правильных
+              ключевых слов, структуры запроса и понимания, как работает модель.
+            </p>
+            <h3 class="subtitle">2.2 Адаптация под задачу</h3>
+            <p>
+              Процесс инженерии подсказок зависит от конкретной задачи. Например, при обучении
+              языковой модели для написания стихов, подсказка должна быть формулирована так, чтобы
+              модель понимала, что ожидается от нее творческое произведение.
+            </p>
+          </div>
+        </div>
+
+        <div class="chapter">
+          <div class="chapter-title">
+            <h2>Часть 3: Применение Prompt Engineering в реальной жизни</h2>
+            <h2 id="showButton">+</h2>
+          </div>
+          <div class="chapter-content hidden" id="toggleContent">
+            <h3 class="subtitle">3.1 Оптимизация результатов</h3>
+            <p>
+              Используя техники Prompt Engineering, можно существенно повысить точность и полезность
+              модели. Это может быть особенно важно при решении конкретных задач, таких как ответы
+              на вопросы, создание текстов или генерация кода.
+            </p>
+            <h3 class="subtitle">3.2 Использование в обучении</h3>
+            <p>
+              Prompt Engineering также играет важную роль в обучении моделей. Студенты и
+              исследователи могут оптимизировать свои запросы, чтобы получить более релевантные и
+              информативные ответы от модели.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <div class="footer-content">
+        <p class="footer-left-gdsc">© 2024 CourseHub</p>
+        <div class="footer-right">
+          <p class="social-media">
+            Наши
+            <a href="#">контакты</a>
+          </p>
+          <div class="brands">
+            <a href=""><i class="fa-brands fa-telegram"></i></a>
+            <a href=""><i class="fa-brands fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="accordeon.js"></script>
+  </body>
+</html>
