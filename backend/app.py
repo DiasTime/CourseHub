@@ -1,49 +1,34 @@
 from flask import Flask, render_template, request
-import os
-from docx import Document
-import re
 
 app = Flask(__name__)
 
-# Путь к папке, где будут сохраняться документы
-UPLOAD_FOLDER = 'uploads'
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-
-# Страница добавления курсов
-@app.route('/add_course', methods=['GET', 'POST'])
-def add_course():
-    if request.method == 'POST':
-        # Получаем загруженный файл
-        file = request.files['file']
-        if file:
-            # Сохраняем файл
-            filename = file.filename
-            filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-            file.save(filepath)
-            # Парсим документ и извлекаем лекции и ссылки на видео
-            lectures, video_link = parse_document(filepath)
-            return render_template('show_lectures.html', lectures=lectures, video_link=video_link)
+@app.route('/')
+def index():
     return render_template('add_course.html')
 
-# Функция для парсинга документа Word
-def parse_document(filepath):
-    doc = Document(filepath)
-    lectures = []
-    lecture = {'title': '', 'content': ''}
-    video_link = None
-    for paragraph in doc.paragraphs:
-        if paragraph.text.startswith('<TITLE>'):
-            lecture['title'] = paragraph.text.replace('<TITLE>', '').replace('</TITLE>', '')
-        elif paragraph.text.startswith('<LECTURE>'):
-            lecture['content'] = paragraph.text.replace('<LECTURE>', '').replace('</LECTURE>', '')
-            lectures.append(lecture.copy())
-            lecture = {'title': '', 'content': ''}
-        elif paragraph.text.startswith('<YOUTUBE>'):
-            # Извлекаем ссылку на YouTube видео из тега <YOUTUBE>
-            match = re.search(r'<YOUTUBE>(.+)</YOUTUBE>', paragraph.text)
-            if match:
-                video_link = match.group(1)
-    return lectures, video_link
+@app.route('/add_course', methods=['POST'])
+def add_course():
+    title = request.form['title']
+    author = request.form['author']
+    date = request.form['date']
+    video_src = request.form['video_src']
+
+    chapters = []
+    for key, value in request.form.items():
+        if key.startswith('chapter_title_'):
+            chapter_num = key.split('_')[-1]
+            chapter_title = value
+            chapter_content = request.form[f'chapter_content_{chapter_num}']
+            chapters.append({'title': chapter_title, 'content': chapter_content})
+
+    # Сохраняем данные в файл
+    with open('courses.txt', 'a') as file:
+        file.write(f"Title: {title}\nAuthor: {author}\nDate: {date}\nVideo Source: {video_src}\n")
+        for chapter in chapters:
+            file.write(f"Chapter Title: {chapter['title']}\nChapter Content: {chapter['content']}\n")
+        file.write('\n')
+
+    return 'Курс успешно добавлен и сохранен в файл.'
 
 if __name__ == '__main__':
     app.run(debug=True)

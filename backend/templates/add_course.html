@@ -1,15 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Course</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Добавление курса</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" type="text/css">
+
 </head>
+
 <body>
-    <h1>Add Course</h1>
-    <form method="POST" enctype="multipart/form-data">
-        <input type="file" name="file" accept=".docx">
-        <button type="submit">Upload</button>
-    </form>
+    <header>
+        <div class="left-side-menu">
+            <div class="logo">
+                <a href="#"><img src="img/545646161.png" /></a>
+                <h1 class="logo-title">Онлайн учебник</h1>
+            </div>
+        </div>
+    </header>
+    <div class="add-course-wrapper">
+        <h1>Добавление курса</h1>
+        <form action="/add_course" method="post">
+            <label for="title">Название курса:</label>
+            <input type="text" id="title" name="title" required><br>
+
+            <label for="author">Автор:</label>
+            <input type="text" id="author" name="author" required><br>
+
+            <label for="date">Дата:</label>
+            <input type="date" id="date" name="date" required><br>
+
+            <label for="video_src">Ссылка на видео:</label>
+            <input type="text" id="video_src" name="video_src" required><br>
+
+            <div id="chapters">
+                <!-- JavaScript will dynamically add chapters here -->
+            </div>
+
+            <button type="button" onclick="addChapter()">Добавить главу</button><br>
+            <button type="submit">Добавить курс</button>
+        </form>
+    </div>
+
+    <script>
+        function addChapter() {
+            var chaptersDiv = document.getElementById('chapters');
+
+            var nextChapterNum = chaptersDiv.children.length + 1;
+
+            var chapterDiv = document.createElement('div');
+            chapterDiv.innerHTML = `
+                <label for="chapter_title_${nextChapterNum}">Заголовок главы ${nextChapterNum}:</label>
+                <input type="text" id="chapter_title_${nextChapterNum}" name="chapter_title_${nextChapterNum}" required><br>
+                
+                <label for="chapter_content_${nextChapterNum}">Содержание главы ${nextChapterNum}:</label>
+                <textarea id="chapter_content_${nextChapterNum}" name="chapter_content_${nextChapterNum}" required></textarea><br>
+            `;
+            chaptersDiv.appendChild(chapterDiv);
+        }
+    </script>
 </body>
+
 </html>
