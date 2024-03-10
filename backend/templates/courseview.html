@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title >CourseHub</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
+    <link rel="icon" type="image/x-icon" href="img/545646161.png" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='style3.css') }}" type="text/css">
+</head>
+
+<body>
+    <header>
+        <div class="left-side-menu">
+            <div class="logo">
+                <a href="http://127.0.0.1:5500/index.html">
+                    <img src="img/545646161.png" />
+                  
+                    <h1 class="logo-title">Онлайн учебник</h1>
+                </a>
+            </div>
+            <div class="menu">
+                <ul class="menu-list">
+                    <li class="menu-item">
+                        <span><a href="http://127.0.0.1:5500/index.html">Про нас</a></span>
+                    </li>
+                    <li class="menu-item">
+                        <span><a href="http://127.0.0.1:5500/aboutUs.html">Контакты</a></span>
+                    </li>
+                    <li class="menu-item">
+                        <span><a href="http://127.0.0.1:5500/index.html">Курсы</a></span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="members">
+            <ul class="members-list">
+                <li>
+                    <a href="#">Войти</a>
+                </li>
+                <li>
+                    <a href="#">Регистрация</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <div class="intro">
+        {% for course in courses %}
+        <div class="lession">
+            <h1>{{ course.title }}</h1>
+            <p class="author">Автор: {{ course.author }} / {{ course.date }}</p>
+            <div class="video">
+                <iframe style="box-shadow: 2px 3px 20px 2px rgb(48, 48, 48)" width="970" height="490" src="{{ course.video_embed_src }}"  frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                
+            </div>
+            {% for chapter in course.chapters %}
+            <div class="chapter">
+                <div class="chapter-title">
+                    <h2>{{ chapter.title }}</h2>
+                    <h2 id="showButton">+</h2>
+                </div>
+                <div class="chapter-content">
+                    <p id="toggleContent" class="hidden">{{ chapter.content }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endfor %}
+    </div>
+    <footer>
+        <div class="footer-content">
+            <p class="footer-left-gdsc">© 2024 CourseHub</p>
+            <div class="footer-right">
+                <p class="social-media">
+                    Наши
+                    <a href="#">контакты</a>
+                </p>
+                <div class="brands">
+                    <a href=""><i class="fa-brands fa-telegram"></i></a>
+                    <a href=""><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+        // Вставьте сюда JavaScript-код аккордеона из файла accordeon.js
+        let buttons = document.querySelectorAll('#showButton');
+        let contents = document.querySelectorAll('#toggleContent');
+
+        buttons.forEach((button, index) => {
+        button.addEventListener("click", (e) => {
+            let content = contents[index];
+            button.innerText = content.classList.contains("hidden") ? "-" : "+";
+            content.classList.toggle("hidden");
+        });
+        });
+    </script>
+</body>
+
+</html>
