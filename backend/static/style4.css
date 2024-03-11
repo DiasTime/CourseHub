@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:700|Merriweather:400');
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-color: #fff;
+    font-family: 'Merriweather', sans-serif;
+}
+
+header {
+    width: 1180px;
+    margin: 0 auto;
+    padding: 30px 0;
+}
+
+.left-side-menu {
+    display: flex;
+}
+
+.logo {
+    display: flex;
+    cursor: pointer;
+}
+
+.logo-title {
+    color: #1a1a1a;
+    font-size: 20px;
+}
+
+.logo img {
+    height: 60px;
+    margin-top: -18px;
+    padding: 0;
+}
+
+.workshop-list-carousel {
+    width: 1180px;
+    margin: 0 auto;
+}
+
+.workshop-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.workshop {
+    background-color: #e6e1f9;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.workshop-name {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #1a1a1a;
+}
+
+.workshop-name-sub {
+    font-size: 16px;
+    color: #1a1a1a;
+}
+
+.workshop-description-textlist {
+    margin-top: 15px;
+}
+
+.description-text {
+    font-size: 16px;
+    color: #1a1a1a;
+}
+
+.workshop-subscribe-btn {
+    background-color: #c7b8ec;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.workshop-subscribe-btn:hover {
+    background-color: #a99bd1;
+}
