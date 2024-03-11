@@ -1,0 +1,131 @@
+/* Общие стили */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+}
+
+.logo {
+    display: inline-block;
+}
+
+.logo img {
+    height: 50px;
+    margin-right: 10px;
+}
+
+.logo-title {
+    display: inline;
+}
+
+.menu {
+    display: inline-block;
+}
+
+.menu-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-item {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.menu-item a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.members {
+    float: right;
+}
+
+.members-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.members-list li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.members-list li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.intro {
+    padding: 20px;
+}
+
+.lession {
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.chapter-title {
+    cursor: pointer;
+}
+
+.chapter-content {
+    display: none;
+}
+
+.footer-content {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+.footer-right {
+    float: right;
+}
+
+.social-media a {
+    color: #fff;
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+/* Медиа запросы для адаптивного дизайна */
+
+@media screen and (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    .logo img {
+        height: 40px;
+    }
+
+    .logo-title {
+        font-size: 1.2em;
+    }
+
+    .menu-item {
+        margin-right: 10px;
+    }
+
+    .members-list li {
+        margin-right: 5px;
+    }
+}
