@@ -25,7 +25,18 @@ def add_course():
             chapter_content = request.form.get(f'chapter_content_{chapter_num}', '')
             chapters.append({'title': chapter_title, 'content': chapter_content})
 
+<<<<<<< Updated upstream
     # Сохраняем данные в файл
+=======
+    course_descriptions = []
+    for key, value in request.form.items():
+        if key.startswith('course_description_'):
+            course_description_num = key.split('_')[-1]
+            course_description = value
+            course_descriptions.append(course_description)
+            
+
+>>>>>>> Stashed changes
     with open('courses.txt', 'a', encoding='utf-8') as file:
         file.write(f"Title: {title}\nAuthor: {author}\nDate: {date}\nVideo Source: {video_src}\n")
         for chapter in chapters:
