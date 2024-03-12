@@ -1,42 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Доступные курсы</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style4.css') }}" type="text/css">
 </head>
-
 <body>
-    <header>
-        <div class="left-side-menu">
-            <div class="logo">
-                <a href="http://127.0.0.1:5500/index.html"><img src="https://iimg.su/s/11/AltVHu4JfYDeHkhn0KM1Ltzt8qQZlTNFQKEiBcvl.png"></a>
-                <h1 class="logo-title">Онлайн учебник</h1>
-            </div>
-        </div>
-    </header>
-
     <div class="workshop-list-carousel">
         <h1 id="uroki">Доступные курсы:</h1>
         <div class="workshop-list">
             {% for course in courses %}
             <div class="workshop">
-                <h1 class="workshop-name">{{ course['course_name'] }}</h1>
-                <span class="workshop-name-sub">{{ course['course_slogan'] }}</span>
+                <h1 class="workshop-name">
+                    {{ course['course_name'] }}<br />
+                    <span class="workshop-name-sub">{{ course['course_slogan'] }}</span>
+                </h1>
+                <!-- Assuming you have a placeholder image -->
+                <img src="placeholder_image.jpg" alt="" class="workshop-img" />
+
                 <div class="workshop-description-textlist">
                     {% for description in course['course_descriptions'] %}
-                    <p class="description-text">{{ description }}</p>
+                    <div class="workshop-description-text">
+                        <i class="fa-solid fa-check"></i>
+                        <p class="description-text">{{ description }}</p>
+                    </div>
                     {% endfor %}
+                    <!-- Assuming the button leads to a lessonExample.html page -->
+                    <a href="lessonExample.html"><button class="workshop-subscribe-btn">Перейти</button></a>
                 </div>
-                <a href="#"><button class="workshop-subscribe-btn">Перейти</button></a>
             </div>
             {% endfor %}
         </div>
     </div>
-
 </body>
-
 </html>

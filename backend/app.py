@@ -37,10 +37,6 @@ def add_course():
             course_descriptions.append(course_description)
             
 
-    
-    
-            
-    # Сохраняем данные в файл
     with open('courses.txt', 'a', encoding='utf-8') as file:
         file.write(f"Title: {title}\nAuthor: {author}\nDate: {date}\nVideo Source: {video_src}\n")
         file.write(f"Course Name: {course_name}\nCourse Slogan: {course_slogan}\nCourse Description: {course_description}\n")
