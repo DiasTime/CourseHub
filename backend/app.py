@@ -17,18 +17,10 @@ def add_course():
     date = request.form['date']
     video_src = request.form['video_src']
     video_embed_src = convert_to_embed_url(video_src)
-
     course_name = request.form['course_name']
     course_slogan = request.form['course_slogan']
     course_description = request.form['course_description']
-
-    course_descriptions = []
-    for key, value in request.form.items():
-        if key.startswith('course_description_'):
-            course_description_num = key.split('_')[-1]
-            course_description = value
-            course_descriptions.append(course_description)
-            
+    
     chapters = []
     for key, value in request.form.items():
         if key.startswith('chapter_title_'):

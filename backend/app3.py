@@ -20,8 +20,6 @@ def read_course_info(file_path):
                 course_info[key] = value
         return course_info
 
-
-
 @app.route('/')
 def index():
     course_files = get_course_files()
@@ -29,12 +27,11 @@ def index():
     for file in course_files:
         file_path = os.path.join(file)
         course_info = read_course_info(file_path)
-
-        course_name = course_info.get('course_name', '')
-        course_slogan = course_info.get('course_slogan', '')
-        course_descriptions = [course_info.get(f'course_description_{i}', '') for i in range(1, 5)]
-        courses.append({'title': course_name, 'author': course_slogan, 'date': '', 'chapters': [{'title': f'Course Description {i}', 'content': desc} for i, desc in enumerate(course_descriptions, start=1)]})
-
+        
+        course_name = course_info.get('Course Name', '')  # Updated to match the key in the file
+        course_slogan = course_info.get('Course Slogan', '')  # Updated to match the key in the file
+        course_descriptions = [course_info.get(f'Course Description {i}', '') for i in range(1, 5)]  # Updated to match the key in the file
+        courses.append({'course_name': course_name, 'course_slogan': course_slogan, 'course_descriptions': course_descriptions})
     return render_template('available_courses.html', courses=courses)
 
 if __name__ == '__main__':
