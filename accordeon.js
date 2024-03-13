@@ -1,10 +1,9 @@
-let buttons = document.querySelectorAll('#showButton');
-let contents = document.querySelectorAll('#toggleContent');
+const buttons = document.querySelectorAll('#showButton');
 
-buttons.forEach((button, index) => {
-  button.addEventListener("click", (e) => {
-    let content = contents[index];
-    button.innerText = content.classList.contains("hidden") ? "-" : "+";
-    content.classList.toggle("hidden");
+buttons.forEach(button => {
+  const content = button.nextElementSibling;
+  button.addEventListener('click', () => {
+    button.innerText = content.style.display === 'none' ? '-' : '+';
+    content.style.display = content.style.display === 'none' ? 'block' : 'none';
   });
 });
