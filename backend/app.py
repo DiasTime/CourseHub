@@ -1,16 +1,17 @@
 from flask import Flask, render_template, request
-import os
+import firebase_admin
+from firebase_admin import credentials
+from firebase_admin import firestore
 
 app = Flask(__name__)
 
+# Initialize Firestore with your credentials
+cred = credentials.Certificate("firestore.json")
+firebase_admin.initialize_app(cred)
+db = firestore.client()
+
 def convert_to_embed_url(video_url):
     return video_url.replace("watch?v=", "embed/")
-
-def get_next_course_file():
-    course_files = [file for file in os.listdir() if file.startswith('courses') and file.endswith('.txt')]
-    course_numbers = [int(file.split('.')[0].split('courses')[-1]) for file in course_files if file.split('.')[0].split('courses')[-1].isdigit()]
-    next_course_number = max(course_numbers, default=0) + 1
-    return f"courses{next_course_number}.txt"
 
 @app.route('/')
 def index():
@@ -43,20 +44,24 @@ def add_course():
             course_description = value
             course_descriptions.append(course_description)
 
-    # Get the next available course file name
-    file_name = get_next_course_file()
-    
-    # Save data to the file
-    with open(file_name, 'a', encoding='utf-8') as file:
-        file.write(f"Title: {title}\nAuthor: {author}\nDate: {date}\nVideo Source: {video_src}\n")
-        file.write(f"Course Name: {course_name}\nCourse Slogan: {course_slogan}\nCourse Description: {course_description}\n")
-        for chapter in chapters:
-            file.write(f"Chapter Title: {chapter['title']}\nChapter Content: {chapter['content']}\n")
-        for i, description in enumerate(course_descriptions, start=1):
-            file.write(f"Course Description {i}: {description}\n")
-        file.write('\n')
+    # Prepare data to be saved in Firestore
+    data = {
+        "title": title,
+        "author": author,
+        "date": date,
+        "video_src": video_src,
+        "video_embed_src": video_embed_src,
+        "course_name": course_name,
+        "course_slogan": course_slogan,
+        "course_description": course_description,
+        "chapters": chapters,
+        "course_descriptions": course_descriptions
+    }
 
-    return 'Курс успешно добавлен и сохранен в файл.'
+    # Add data to Firestore
+    db.collection('courses').add(data)
+
+    return 'Курс успешно добавлен и сохранен в Firestore.'
 
 if __name__ == '__main__':
     app.run(debug=True)
