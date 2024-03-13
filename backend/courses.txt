@@ -1,7 +1,7 @@
 Title: awgvBHG
 Author: AEbhaBEB
 Date: 2024-03-08
-Video Source: https://www.youtube.com/watch?v=EDIDuMYd-Uk&t=3s
+Video Source: https://www.youtube.com/watch?v=nfwovSRTaGQ
 Course Name: AEBaBB
 Course Slogan: AEbABB
 Course Description: AEBABabBaBAEBaSB
@@ -11,5 +11,4 @@ Chapter Title 1: EABaBaBaBBE
 Chapter Content1: aeBabeabssbsbsbsbsbsb
 Chapter Title2: sdbsdBBb
 Chapter Content 2: sdBsDBSDBds
->>>>>>> 8a210d698b8ae00d3cef4ef91560874f5f8f8556
 
