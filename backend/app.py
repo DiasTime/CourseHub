@@ -11,7 +11,7 @@ def get_next_course_file():
     return db.collection(u'courses').document().id
 
 # Initialize Firebase
-serviceAccountKeyFile = "templates/firestore.json"
+serviceAccountKeyFile = "firestore.js"
 cred = credentials.Certificate(serviceAccountKeyFile)
 firebase_admin.initialize_app(cred)
 db = firebase_admin.firestore.client()

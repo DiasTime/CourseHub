@@ -8,7 +8,7 @@ def convert_to_embed_url(video_url):
     return video_url.replace("watch?v=", "embed/")
 
 # Initialize Firebase
-serviceAccountKeyFile = "templates/firestore.json"
+serviceAccountKeyFile = "firestore.js"
 cred = credentials.Certificate(serviceAccountKeyFile)
 firebase_admin.initialize_app(cred)
 db = firebase_admin.firestore.client()
