@@ -1,6 +1,10 @@
 import firebase_admin
 from firebase_admin import credentials
+<<<<<<< HEAD
 from flask import Flask, render_template, request
+=======
+from flask import Flask, render_template, request, redirect, url_for
+>>>>>>> 92dec27fdf3ebcb1f8ae0a00c18d5f3e95d36a79
 
 app = Flask(__name__)
 
@@ -8,8 +12,14 @@ def convert_to_embed_url(video_url):
     return video_url.replace("watch?v=", "embed/")
 
 def get_next_course_file():
+<<<<<<< HEAD
     return db.collection(u'courses').document().id
 
+=======
+    doc_ref = db.collection(u'courses').document()
+
+<<<<<<< HEAD
+>>>>>>> 92dec27fdf3ebcb1f8ae0a00c18d5f3e95d36a79
 # Initialize Firebase
 serviceAccountKeyFile = "firestore.js"
 cred = credentials.Certificate(serviceAccountKeyFile)
@@ -85,4 +95,10 @@ def add_course():
     return 'Курс успешно добавлен и сохранен в Firestore.'
 
 if __name__ == '__main__':
+<<<<<<< HEAD
     app.run(debug=True)
+=======
+    app.run(debug=True)
+=======
+>>>>>>> e5ca80b3b42761bd9f9d994e59ad94e4617d7db5
+>>>>>>> 92dec27fdf3ebcb1f8ae0a00c18d5f3e95d36a79

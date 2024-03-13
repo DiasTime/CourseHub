@@ -1,9 +1,9 @@
-Title: aBeaeb
-Author: aebaeBD
-Date: 2024-03-20
-Video Source: DABaBb
-Course Name: ADBadbaDB 
-Course Slogan: aDbABaBaDb
-Course Description 1: ADBaBBAB
-Course Description 2: dBADBBaB
+Title: ABC Course
+Author: John Doe
+Date: 2023-04-01
+Video Source: TutorialsCo
+Course Name: Introduction to Programming
+Course Slogan: Coding Made Easy
+Course Description 1: Learn the basics of programming with our easy-to-follow course.
+Course Description 2: Master the fundamentals of coding and start building your own projects.
 
