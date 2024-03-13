@@ -1,6 +1,5 @@
-import firebase_admin
-from firebase_admin import credentials
 from flask import Flask, render_template, request
+import os
 
 app = Flask(__name__)
 
@@ -8,35 +7,14 @@ def convert_to_embed_url(video_url):
     return video_url.replace("watch?v=", "embed/")
 
 def get_next_course_file():
-    return db.collection(u'courses').document().id
-
-# Initialize Firebase
-serviceAccountKeyFile = "firestore.js"
-cred = credentials.Certificate(serviceAccountKeyFile)
-firebase_admin.initialize_app(cred)
-db = firebase_admin.firestore.client()
+    course_files = [file for file in os.listdir() if file.startswith('courses') and file.endswith('.txt')]
+    course_numbers = [int(file.split('.')[0].split('courses')[-1]) for file in course_files if file.split('.')[0].split('courses')[-1].isdigit()]
+    next_course_number = max(course_numbers, default=0) + 1
+    return f"courses{next_course_number}.txt"
 
 @app.route('/')
 def index():
-    courses = []
-
-    # Read data from Firestore
-    docs = db.collection(u'courses').stream()
-    for doc in docs:
-        course_data = doc.to_dict()
-        course_name = course_data.get('course_name', '')
-        course_slogan = course_data.get('course_slogan', '')
-        course_descriptions = course_data.get('course_descriptions', [])
-        chapters = course_data.get('chapters', [])
-
-        courses.append({
-            'course_name': course_name,
-            'course_slogan': course_slogan,
-            'course_descriptions': course_descriptions,
-            'chapters': chapters
-        })
-
-    return render_template('courseview.html', courses=courses)
+    return render_template('add_course.html')
 
 @app.route('/add_course', methods=['POST'])
 def add_course():
@@ -48,7 +26,7 @@ def add_course():
     course_name = request.form['course_name']
     course_slogan = request.form['course_slogan']
     course_description = request.form['course_description']
-
+    
     chapters = []
     for key, value in request.form.items():
         if key.startswith('chapter_title_'):
@@ -62,27 +40,23 @@ def add_course():
         if key.startswith('course_description_'):
             course_description_num = key.split('_')[-1]
             course_description=request.form.get(f'course_description_{course_description_num}', '')
+            course_description = value
             course_descriptions.append(course_description)
 
-    # Get the next available course file name (now a Firestore document ID)
+    # Get the next available course file name
     file_name = get_next_course_file()
+    
+    # Save data to the file
+    with open(file_name, 'a', encoding='utf-8') as file:
+        file.write(f"Title: {title}\nAuthor: {author}\nDate: {date}\nVideo Source: {video_src}\n")
+        file.write(f"Course Name: {course_name}\nCourse Slogan: {course_slogan}\nCourse Description: {course_description}\n")
+        for chapter in chapters:
+            file.write(f"Chapter Title: {chapter['title']}\nChapter Content: {chapter['content']}\n")
+        for i, description in enumerate(course_descriptions, start=1):
+            file.write(f"Course Description {i}: {description}\n")
+        file.write('\n')
 
-    # Save data to Firestore
-    course_ref = db.collection(u'courses').document(file_name)
-    course_ref.set({
-        'title': title,
-        'author': author,
-        'date': date,
-        'video_src': video_src,
-        'video_embed_src': video_embed_src,
-        'course_name': course_name,
-        'course_slogan': course_slogan,
-        'course_description': course_description,
-        'chapters': chapters,
-        'course_descriptions': course_descriptions
-    })
-
-    return 'Курс успешно добавлен и сохранен в Firestore.'
+    return 'Курс успешно добавлен и сохранен в файл.'
 
 if __name__ == '__main__':
     app.run(debug=True)
