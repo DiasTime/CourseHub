@@ -1,51 +1,49 @@
+/* General Resets */
 @import url('https://fonts.googleapis.com/css?family=Poppins:700|Merriweather:400');
-
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
 }
 
+/* Global Styles */
 body {
   background-color: #fff;
   font-family: 'Merriweather', sans-serif;
 }
 
-ul {
+ul,
+ol {
   list-style: none;
 }
+
 a {
   text-decoration: none;
+  color: #1a1a1a;
 }
-header {
+
+.container {
   width: 1180px;
   margin: 0 auto;
+}
+
+.flex {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+/* Header Styles */
+header {
   padding: 30px 0;
 }
-header a {
-  color: #1a1a1a;
-}
 
-span {
-  color: #c14ed0;
-}
-
-.left-side-menu {
-  display: flex;
-}
 .logo {
   display: flex;
+  align-items: center;
   cursor: pointer;
 }
-.logo a {
-  display: flex;
-}
-.logo-title {
-  color: #1a1a1a;
-  font-size: 20px;
-}
+
 .logo img {
   height: 60px;
   margin-top: -18px;
@@ -55,20 +53,14 @@ span {
 .menu {
   margin-left: 70px;
 }
+
 .menu-list {
   display: flex;
   gap: 20px;
-  list-style: none;
   font-size: 16px;
   font-family: 'Merriweather', sans-serif;
   font-weight: 500;
   line-height: 30.49px;
-}
-.members ul li a::after {
-  content: '';
-  display: block;
-  width: 0;
-  transform: scale(0);
 }
 
 .members-list {
@@ -76,6 +68,7 @@ span {
   gap: 17px;
 }
 
+/* Members Styles */
 .members ul li {
   background-color: #e6e1f9;
   padding: 5px 15px;
@@ -95,7 +88,7 @@ span {
   transform: translateY(-4px);
 }
 
-ul li a::after {
+.members ul li a::after {
   content: '';
   display: block;
   width: 100%;
@@ -104,54 +97,12 @@ ul li a::after {
   transform: scale(0);
   transition: all 0.2s;
 }
-ul li:hover a::after {
+
+.members ul li:hover a::after {
   transform: scale(1);
 }
 
-.wrappers {
-  display: flex;
-}
-.left-wrapper {
-  padding: 150px 0;
-}
-.left-wrapper-title {
-  max-width: 600px;
-  font-size: 40px;
-  font-family: 'Merriweather', sans-serif;
-  line-height: 50px;
-  margin-bottom: 23px;
-}
-.left-wrapper-subtitle {
-  font-size: 16px;
-  font-family: 'Merriweather', sans-serif;
-  max-width: 600px;
-  line-height: 24px;
-  margin-bottom: 14px;
-}
-
-.intro {
-  width: 1180px;
-  margin: 0 auto;
-  margin-bottom: 150px;
-}
-
-.right-wrapper {
-  position: relative;
-}
-
-.right-wrap-logo {
-  position: absolute;
-  z-index: 3;
-  height: 500px;
-  top: 20px;
-  right: 10px;
-}
-
-.workshop-list-carousel #uroki {
-  margin-bottom: 40px;
-  text-align: center;
-}
-
+/* Workshop Styles */
 .workshop-list-carousel {
   width: 1180px;
   margin: 0 auto;
@@ -159,14 +110,12 @@ ul li:hover a::after {
 
 .workshop-list {
   display: grid;
-  justify-content: space-between;
-  align-content: center;
+  grid-template-columns: repeat(auto-flow, minmax(350px, 1fr));
   gap: 10px;
-  grid-auto-flow: column;
 }
 
 .workshop {
-  width: 370px;
+  width: 100%;
   height: 560px;
   background-color: #e6e1f9;
   border-radius: 35px;
@@ -182,11 +131,6 @@ ul li:hover a::after {
   max-width: 250px;
   margin: 0 auto;
 }
-.workshop-name-sub {
-  font-size: 13px;
-  font-weight: normal;
-  color: #1a1a1a;
-}
 
 .workshop-subscribe-btn {
   position: absolute;
@@ -201,37 +145,14 @@ ul li:hover a::after {
   border-radius: 10px;
   border: 0;
   cursor: pointer;
-  margin-bottom: 30px;
   transition: 0.2s ease all;
 }
-.workshop-subscribe-btn a {
-  color: #1a1a1a;
-}
+
 .workshop-subscribe-btn:hover {
   transform: translateY(-3px);
 }
 
-.workshop-description-textlist {
-  display: flex;
-  flex-direction: column;
-}
-.workshop-description-text {
-  display: flex;
-  gap: 10px;
-  margin-left: 30px;
-  margin-bottom: 15px;
-}
-
-.description-text {
-  font-family: 'Merriweather', sans-serif;
-  font-size: 14px;
-  max-width: 290px;
-}
-.fa-check {
-  color: #c14ed0;
-  font-size: 22px;
-}
-
+/* Footer Styles */
 footer {
   width: 100%;
   height: 150px;
@@ -239,34 +160,23 @@ footer {
   color: #1a1a1a;
   font-family: 'Merriweather', sans-serif;
   margin-top: 100px;
-}
-
-footer a {
-  color: #1a1a1a;
-}
-.footer-content {
-  width: 100%;
-  max-width: 1180px;
-  margin: 0 auto;
-  padding-top: 50px;
   display: flex;
+  align-items: center;
   justify-content: space-between;
 }
 
-.fa-brands {
-  color: #1a1a1a;
-  font-size: 18px;
-}
 .footer-right {
   float: right;
   display: flex;
   gap: 10px;
 }
+
 .brands {
   display: flex;
   gap: 10px;
 }
 
+/* Lession Styles */
 .lession {
   padding-top: 20px;
   max-width: 990px;
@@ -293,16 +203,6 @@ footer a {
   gap: 25px;
 }
 
-#showButton {
-  margin: -10px;
-  font-size: 40px;
-  cursor: pointer;
-  transition: all 0.1s ease;
-}
-#showButton:hover {
-  transform: scale(1.1);
-}
-
 .chapter-content p {
   font-size: 18px;
   line-height: 25px;
@@ -313,8 +213,4 @@ footer a {
 }
 
 .subtitle {
-  color: #1a1a1a;
-  font-size: 18px;
-  font-weight: bold;
-  padding: 10px 0;
-}
+ 
