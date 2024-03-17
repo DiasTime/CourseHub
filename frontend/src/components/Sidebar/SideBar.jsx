@@ -13,7 +13,7 @@ function SideBar() {
           {open ? <IoClose /> : <RxHamburgerMenu />}
         </button>
         <div className={open ? ' sidebarItems' : 'hidden sidebarItems'}>
-          <a class="active" href="#home">
+          <a className="active" href="#home">
             Home
           </a>
           <a href="#news">News</a>
