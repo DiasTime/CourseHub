@@ -1,8 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
-const Course = ({ descriptions, title, slogan }) => {
-  console.log(descriptions);
+const Course = ({ descriptions, title, slogan, courseId, dias }) => {
   return (
     <div className="workshop">
       <h1 className="workshop-name">
@@ -14,13 +13,13 @@ const Course = ({ descriptions, title, slogan }) => {
 
       <div className="workshop-description-textlist">
         {descriptions.map((item) => (
-          <div key={item} className="workshop-description-text">
+          <div key={item.courseId} className="workshop-description-text">
             <i className="fa-solid fa-check"></i>
             <p className="description-text">{item}</p>
           </div>
         ))}
 
-        <Link to="/lessions">
+        <Link to="/lessions/:courseId">
           <button className="workshop-subscribe-btn">Перейти</button>
         </Link>
       </div>

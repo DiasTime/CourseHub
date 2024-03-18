@@ -30,11 +30,11 @@ function App() {
 
   return (
     <>
-      <CourseContext.Provider value={{ courses, setCourses }}>
+      <CourseContext.Provider value={{ courses }}>
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/lessions" element={<Lessions />} />
+          <Route path="/lessions/:courseId" element={<Lessions />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
