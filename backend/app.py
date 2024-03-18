@@ -26,7 +26,7 @@ def add_course():
     video_embed_src = convert_to_embed_url(video_src)
     course_name = request.form['course_name']
     course_slogan = request.form['course_slogan']
-    course_description = request.form['course_description']
+    # course_description = request.form['course_description']
     
     chapters = []
     for key, value in request.form.items():
@@ -58,10 +58,16 @@ def add_course():
         "course_descriptions": course_descriptions
     }
 
-    # Add data to Firestore
-    db.collection('courses').add(data)
+    # Set data to Firestore with a unique document name
+    doc_ref = db.collection('courses').document(f'course_{get_next_course_number()}')
+    doc_ref.set(data)
 
     return 'Курс успешно добавлен и сохранен в Firestore.'
+
+def get_next_course_number():
+    # Get the total number of documents in the 'courses' collection
+    courses_ref = db.collection('courses')
+    return courses_ref.get().__len__() + 1
 
 if __name__ == '__main__':
     app.run(debug=True)
