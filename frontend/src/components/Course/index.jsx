@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 
-const Course = ({ descriptions, title, slogan, courseId, dias }) => {
+const Course = ({ descriptions, title, slogan, courseId }) => {
   return (
     <div className="workshop">
       <h1 className="workshop-name">
@@ -19,7 +19,7 @@ const Course = ({ descriptions, title, slogan, courseId, dias }) => {
           </div>
         ))}
 
-        <Link to="/lessions/:courseId">
+        <Link to={`/lessions/${courseId}`}>
           <button className="workshop-subscribe-btn">Перейти</button>
         </Link>
       </div>
