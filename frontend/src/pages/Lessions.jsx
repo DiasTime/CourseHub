@@ -44,7 +44,6 @@ function Lessions() {
           <div className="chapter">
             <div className="chapter-title">
               <h2>Лекция: Введение в Prompt Engineering</h2>
-              <h2 id="showButton">+</h2>
             </div>
             <div className="chapter-content">
               <p id="toggleContent">{item.course_description}</p>

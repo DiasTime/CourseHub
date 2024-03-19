@@ -1,50 +1,48 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { HiOutlineGlobeAlt } from 'react-icons/hi';
 
 const Header = () => {
   return (
     <header>
       <nav>
-        <div className="left-side-menu">
-          <div className="logo">
-            <Link to="/">
-              <img src="https://iimg.su/s/11/AltVHu4JfYDeHkhn0KM1Ltzt8qQZlTNFQKEiBcvl.png" />
-              <h1 className="logo-title">CourseHub</h1>
+        <Link to="/" className="logo">
+          <h1>CourseHub</h1>
+        </Link>
+        <ul>
+          <li>
+            <Link to="/" className="navlink navlink__active">
+              Home
             </Link>
-          </div>
-          <div className="menu">
-            <ul className="menu-list">
-              <li className="menu-item">
-                <span>
-                  <a href="#lol" className="scrollto">
-                    Про нас
-                  </a>
-                </span>
-              </li>
-              <li className="menu-item">
-                <span>
-                  <a href="aboutUs.html">Контакты</a>
-                </span>
-              </li>
-              <li className="menu-item">
-                <span>
-                  <a href="http://127.0.0.1:5002/#" className="scrollto">
-                    Курсы
-                  </a>
-                </span>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div className="members">
-          <ul className="members-list">
-            <li>
-              <a href="http://127.0.0.1:5000">Войти</a>
-            </li>
-            <li>
-              <a href="#">Регистрация</a>
-            </li>
-          </ul>
+          </li>
+          <li>
+            <Link to="/" className="navlink">
+              About Us
+            </Link>
+          </li>
+          <li>
+            <Link to="/" className="navlink">
+              Courses
+            </Link>
+          </li>
+          <li>
+            <Link to="/" className="navlink">
+              Events
+            </Link>
+          </li>
+          <li>
+            <Link to="/" className="navlink">
+              Contact Us
+            </Link>
+          </li>
+        </ul>
+
+        <div className="auth">
+          <button className="login">
+            <HiOutlineGlobeAlt className="login_icon" />
+            Login
+          </button>
+          <button className="signup">Sign up</button>
         </div>
       </nav>
     </header>

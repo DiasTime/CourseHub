@@ -1,0 +1,23 @@
+.center_content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.center_content h1 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  color: #0e0e0f;
+  font-size: 70px;
+  max-width: 900px;
+  text-align: center;
+
+  padding-bottom: 40px;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 1px #0e0e0f;
+}
+
+.center_content img {
+  height: 400px;
+}

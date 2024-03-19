@@ -1,14 +1,9 @@
-import { Route, Routes } from 'react-router-dom';
-
 import { useState, useEffect, createContext } from 'react';
 import { db } from './firebase';
 import { onSnapshot, collection } from 'firebase/firestore';
 
 import Header from './components/Header';
-import Footer from './components/Footer';
-import Lessions from './pages/Lessions';
 import Home from './pages/Home';
-import NotFound from './pages/NotFound';
 
 export const CourseContext = createContext([]);
 
@@ -32,15 +27,17 @@ function App() {
     <>
       <CourseContext.Provider value={{ courses }}>
         <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/lessions/:courseId" element={<Lessions />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-        <Footer />
+        <Home />
       </CourseContext.Provider>
     </>
   );
 }
 
 export default App;
+
+/* <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/lessions/:courseId" element={<Lessions />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+        <Footer /> */

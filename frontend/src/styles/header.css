@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+header {
+  padding: 30px 0;
+}
+nav {
+  width: 1140px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo h1 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 25px;
+  color: #0e0e0f;
+}
+
+ul {
+  display: flex;
+  gap: 20px;
+}
+
+.navlink {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 16px;
+  color: #7f8490;
+
+  transition: all 0.2s ease;
+}
+
+.navlink:hover {
+  color: #0e0e0f;
+}
+
+.navlink__active {
+  color: #0e0e0f;
+}
+
+.auth {
+  display: flex;
+  gap: 10px;
+}
+
+button {
+  cursor: pointer;
+  outline: none;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+}
+
+.login {
+  background-color: transparent;
+  display: flex;
+  gap: 5px;
+}
+
+.login_icon {
+  font-size: 18px;
+}
+
+.signup {
+  background-color: #ac90ff;
+  color: aliceblue;
+
+  -webkit-box-shadow: 1px 3px 10px 1px rgba(172, 144, 255, 1);
+  -moz-box-shadow: 1px 3px 10px 1px rgba(172, 144, 255, 1);
+  box-shadow: 1px 3px 10px 1px rgba(172, 144, 255, 1);
+}
