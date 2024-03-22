@@ -1,0 +1,37 @@
+.wrapperTwoCol {
+  padding: 150px 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 10px;
+  grid-row-gap: 0px;
+}
+
+.leftWrapper {
+  max-width: 440px;
+}
+
+.leftWrapper h2 {
+  font-size: 38px;
+  font-weight: 500;
+  color: #0e0e0f;
+  line-height: 1.2;
+}
+
+.leftWrapper p {
+  color: #515151;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 20px 0 40px 0;
+}
+
+.leftWrapper button {
+  -webkit-box-shadow: 1px 3px 13px 1px rgba(172, 144, 255, 1);
+  -moz-box-shadow: 1px 3px 13px 1px rgba(172, 144, 255, 1);
+  box-shadow: 1px 3px 13px 1px rgba(172, 144, 255, 1);
+}
+
+.wrapperTwoCol img {
+  height: 500px;
+  margin: -50px;
+}

@@ -1,0 +1,40 @@
+.purpleBG {
+  background-color: #f7f4ff;
+  /* background-color: #ddd1ff; */
+}
+
+.infoBox {
+  width: 350px;
+  height: 290px;
+  background-color: #fff;
+  border-radius: 30px;
+  padding: 40px 20px 0 20px;
+}
+
+.first_row {
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.infoBoxDescription {
+  font-size: 14px;
+  font-weight: 600;
+  opacity: 0.8;
+}
+
+.infoBoxTitle {
+  font-weight: 600;
+  margin-top: 30px;
+  margin-bottom: 7px;
+  font-size: 18px;
+}
+
+.infoBoxIcon {
+  font-size: 50px;
+  color: #fff;
+  background-color: #ac90ff;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0px 10px 30px 3px rgba(172, 144, 255, 0.6);
+}

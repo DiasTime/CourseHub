@@ -1,12 +1,14 @@
 import React from 'react';
 import Intro from '../components/Intro';
-import CourseList from '../components/CourseList';
+import Description from '../components/Description';
+import Benefits from '../components/Benefits';
 
 function Home() {
   return (
     <>
       <Intro />
-      <CourseList />
+      <Description />
+      <Benefits />
     </>
   );
 }
