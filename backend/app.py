@@ -13,6 +13,11 @@ db = firestore.client()
 def convert_to_embed_url(video_url):
     return video_url.replace("watch?v=", "embed/")
 
+def get_next_course_number():
+    # Get the total number of documents in the 'courses' collection
+    courses_ref = db.collection('courses')
+    return courses_ref.get().__len__() + 1
+
 @app.route('/')
 def index():
     return render_template('add_course.html')
@@ -44,6 +49,9 @@ def add_course():
             course_description = value
             course_descriptions.append(course_description)
 
+    # Get the courseId using the get_next_course_number function
+    course_id = get_next_course_number()
+
     # Prepare data to be saved in Firestore
     data = {
         "title": title,
@@ -55,19 +63,15 @@ def add_course():
         "course_slogan": course_slogan,
         "course_description": course_description,
         "chapters": chapters,
-        "course_descriptions": course_descriptions
+        "course_descriptions": course_descriptions,
+        "courseId": course_id  # Include courseId in the data
     }
 
     # Set data to Firestore with a unique document name
-    doc_ref = db.collection('courses').document(f'course_{get_next_course_number()}')
+    doc_ref = db.collection('courses').document(f'course_{course_id}')
     doc_ref.set(data)
 
     return 'Курс успешно добавлен и сохранен в Firestore.'
-
-def get_next_course_number():
-    # Get the total number of documents in the 'courses' collection
-    courses_ref = db.collection('courses')
-    return courses_ref.get().__len__() + 1
 
 if __name__ == '__main__':
     app.run(debug=True)
