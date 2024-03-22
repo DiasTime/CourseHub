@@ -1,0 +1,4 @@
+flask
+firebase_admin
+firebase
+request
