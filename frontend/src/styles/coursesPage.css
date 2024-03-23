@@ -4,17 +4,16 @@
   position: relative;
   font-family: 'Jost', sans-serif;
   cursor: pointer;
+  transition: all 0.1s ease;
+}
+
+.courseBox:hover {
+  transform: scale(1.02);
 }
 
 @media (max-width: 1400px) {
   .courseBox {
     width: 280px;
-  }
-
-  .courseList {
-    width: 900px;
-    margin: 0 auto;
-    grid-row-gap: 20px;
   }
 }
 
@@ -26,6 +25,12 @@
   grid-template-rows: repeat(2, 1fr);
   /* grid-column-gap: 5px; */
   grid-row-gap: 20px;
+}
+
+@media (max-width: 1400px) {
+  .courseList {
+    width: 900px;
+  }
 }
 
 .topContent {
@@ -67,6 +72,7 @@
   border: 1px solid #dfdfdf;
 }
 .courseName {
+  color: #121212;
   font-weight: 400;
   font-size: 18px;
 }

@@ -5,6 +5,7 @@
 @import './description.css';
 @import './benefits.css';
 @import './coursesPage.css';
+@import './coursePage.css';
 
 * {
   margin: 0;
