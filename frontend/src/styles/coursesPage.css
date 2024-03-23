@@ -1,57 +1,100 @@
 .courseBox {
-  width: 280px;
-  height: 300px;
+  width: 300px;
+  height: 270px;
   position: relative;
   font-family: 'Jost', sans-serif;
+  cursor: pointer;
+}
+
+@media (max-width: 1400px) {
+  .courseBox {
+    width: 280px;
+  }
+
+  .courseList {
+    width: 900px;
+    margin: 0 auto;
+    grid-row-gap: 20px;
+  }
 }
 
 .courseList {
-  width: 1000px;
+  width: 950px;
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(2, 1fr);
-  /* grid-column-gap: 20px; */
-  grid-row-gap: 30px;
+  /* grid-column-gap: 5px; */
+  grid-row-gap: 20px;
 }
 
 .topContent {
-  background-color: #9997e0;
+  background-color: #ac90ff;
   width: 100%;
-  height: 50%;
+  height: 130px;
   border-radius: 15px 15px 0 0;
   color: #fff;
   display: flex;
   align-items: center;
   text-align: center;
   justify-content: center;
+  border: 1px solid #d9d9d9;
+  border-bottom: none;
 }
 
 .topContent h3 {
-  font-size: 30px;
+  font-size: 25px;
   font-weight: 400;
   max-width: 250px;
 }
 
+.fav {
+  position: absolute;
+  top: 18px;
+  right: 25px;
+  font-size: 25px;
+  cursor: pointer;
+}
+
 .bottomContent {
   width: 100%;
-  height: 150px;
+  height: 140px;
   background-color: #fff;
   position: absolute;
   bottom: 0;
   border-radius: 0 0 15px 15px;
   padding: 10px 20px;
+  border: 1px solid #dfdfdf;
 }
 .courseName {
-  font-weight: 500;
+  font-weight: 400;
+  font-size: 18px;
 }
-.author {
+.courseDesc {
+  padding: 5px 0;
   color: #828282;
-  position: absolute;
-  bottom: 50px;
+  font-size: 16px;
+  line-height: 0.9;
 }
-.courseDate {
+
+.courseDetails p {
   position: absolute;
   bottom: 20px;
-  color: #828282;
+  color: #121212;
+  font-size: 14px;
+}
+
+.inputField {
+  width: 950px;
+  margin: 0 auto;
+  padding: 10px 0 35px 0;
+}
+
+.inputField input {
+  padding: 10px 20px;
+  width: 400px;
+  border-radius: 7px;
+
+  border: 1px solid #dfdfdf;
+  outline: none;
 }
