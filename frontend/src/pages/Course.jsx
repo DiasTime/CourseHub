@@ -17,6 +17,12 @@ const Course = () => {
     const unsubscribe = onSnapshot(collectionRef, (querySnapshot) => {
       const items = querySnapshot.docs.map((doc) => doc.data());
       dispatch(setCourses(items));
+
+      // Set the first chapter as the selected chapter
+      const firstCourse = items[0];
+      if (firstCourse && firstCourse.chapters.length > 0) {
+        setSelectChapter(firstCourse.chapters[0].title);
+      }
     });
 
     return unsubscribe;
@@ -74,7 +80,9 @@ const Course = () => {
             </div>
           )}
           <p className="chapterContentWrapper">{selectedChapterContent}</p>
-          <button onClick={nextChapter}>Next Chapter</button>
+          <button className="nextChapter" onClick={nextChapter}>
+            Next Chapter
+          </button>
         </div>
       </div>
     </>
