@@ -1,0 +1,67 @@
+.sideMenu {
+  position: fixed;
+  top: 0;
+  left: -270px; /* Сайдбар изначально скрыт */
+  width: 270px;
+  height: 100%;
+  background-color: #f1f1f1;
+  padding: 20px;
+  transition: left 0.3s ease; /* Анимация для открытия и закрытия сайдбара */
+  z-index: 99;
+}
+
+.sideMenu-visible {
+  left: 0; /* Показываем сайдбар при добавлении класса sidebar-visible */
+}
+
+.sideHint {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 100%;
+  background-color: rgb(241, 239, 239);
+  /* opacity: 0.3; */
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+}
+
+.sideHint p {
+  font-size: 20px;
+  color: #000000;
+}
+
+.chapterItem {
+  font-family: 'Jost', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: #121212;
+  cursor: pointer;
+  padding: 10px 20px;
+  list-style-type: none;
+  line-height: 1.2;
+
+  max-width: 250px;
+}
+
+.active_chapter {
+  background-color: #c0b8d9;
+}
+
+.chapterItem.active_chapter:hover {
+  background-color: #c0b8d9;
+}
+
+.chapterItem:hover {
+  background-color: #c0b8d9;
+}
+
+.course_name {
+  font-family: 'Jost', sans-serif;
+  padding: 10px 20px;
+  color: #121212;
+  font-weight: 500;
+}

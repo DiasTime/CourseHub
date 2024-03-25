@@ -1,43 +1,26 @@
-import { useState, useEffect, createContext } from 'react';
-import { db } from './firebase';
-import { onSnapshot, collection } from 'firebase/firestore';
+import { Route, Routes } from 'react-router-dom';
 
 import Header from './components/Header';
 import Home from './pages/Home';
-
-export const CourseContext = createContext([]);
+import Courses from './pages/Courses';
+import Course from './pages/Course';
+import NotFound from './pages/NotFound';
 
 function App() {
-  const [courses, setCourses] = useState([]);
-  const collectionRef = collection(db, 'courses');
-  useEffect(() => {
-    const getData = onSnapshot(collectionRef, (querySnapshot) => {
-      const items = [];
-      querySnapshot.forEach((doc) => {
-        items.push(doc.data());
-      });
-      setCourses(items);
-    });
-    return () => {
-      getData();
-    };
-  }, []);
-
   return (
     <>
-      <CourseContext.Provider value={{ courses }}>
-        <Header />
-        <Home />
-      </CourseContext.Provider>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/courses" element={<Courses />} />
+        <Route path="/courses/:courseId" element={<Course />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
     </>
   );
 }
 
 export default App;
 
-/* <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/lessions/:courseId" element={<Lessions />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+/* 
         <Footer /> */
