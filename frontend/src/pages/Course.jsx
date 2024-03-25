@@ -36,6 +36,7 @@ const Course = () => {
     if (currentIndex !== -1 && currentIndex < currentCourse?.chapters.length - 1) {
       setSelectChapter(currentCourse?.chapters[currentIndex + 1].title);
     }
+    console.log(currentIndex);
   };
 
   return (
