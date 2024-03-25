@@ -60,7 +60,7 @@ const Course = () => {
         </div>
 
         <div className="wrapper">
-          <h1>{selectedChapterContent}</h1>
+          <h1 className="chapterContentWrapper">{selectedChapterContent}</h1>
           <button onClick={nextChapter}>Next Chapter</button>
         </div>
       </div>

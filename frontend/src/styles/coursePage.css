@@ -20,8 +20,8 @@
   left: 0;
   width: 40px;
   height: 100%;
-  background-color: rgb(229, 228, 228);
-  opacity: 0.3;
+  background-color: rgb(241, 239, 239);
+  /* opacity: 0.3; */
   font-size: 24px;
   display: flex;
   align-items: center;
@@ -32,7 +32,6 @@
 .sideHint p {
   font-size: 20px;
   color: #000000;
-  opacity: 1;
 }
 
 .chapterItem {
