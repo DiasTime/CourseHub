@@ -4,7 +4,7 @@
   left: -250px; /* Сайдбар изначально скрыт */
   width: 250px;
   height: 100%;
-  background-color: #f0f0f0;
+  background-color: #f1f1f1;
   padding: 20px;
   transition: left 0.3s ease; /* Анимация для открытия и закрытия сайдбара */
   z-index: 99;
@@ -33,4 +33,33 @@
   font-size: 20px;
   color: #000000;
   opacity: 1;
+}
+
+.chapterItem {
+  font-family: 'Jost', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: #121212;
+  cursor: pointer;
+  padding: 10px 20px;
+  list-style-type: none;
+  line-height: 1.2;
+}
+
+.active_chapter {
+  background-color: #c0b8d9;
+}
+
+.chapterItem.active_chapter:hover {
+  background-color: #c0b8d9;
+}
+
+.chapterItem:hover {
+  background-color: #c0b8d9;
+}
+
+.course_name {
+  font-family: 'Jost', sans-serif;
+  padding: 10px 20px;
+  color: #121212;
 }

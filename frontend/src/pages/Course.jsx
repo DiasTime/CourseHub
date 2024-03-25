@@ -32,22 +32,30 @@ const Course = () => {
   )?.content;
 
   return (
-    <div className="courseLession">
-      <div className="sidebar" onMouseLeave={handleMouseLeave}>
-        <div className={`sideMenu ${isSidebarVisible ? 'sideMenu-visible' : ''}`}>
-          {currentCourse?.chapters.map((item) => (
-            <li key={item.title} onClick={() => setSelectChapter(item.title)}>
-              {item.title}
-            </li>
-          ))}
+    <>
+      <div className="courseLession">
+        <div className="sidebar" onMouseLeave={handleMouseLeave}>
+          <div className={`sideMenu ${isSidebarVisible ? 'sideMenu-visible' : ''}`}>
+            <h3 className="course_name">{currentCourse.course_name}</h3>
+            {currentCourse?.chapters.map((item) => (
+              <li
+                className={`chapterItem ${selectedChapter === item.title ? 'active_chapter' : ''}`}
+                key={item.title}
+                onClick={() => setSelectChapter(item.title)}>
+                {item.title}
+              </li>
+            ))}
+          </div>
+          <div className="sideHint" onMouseEnter={handleMouseEnter}>
+            <p>{'>'}</p>
+          </div>
         </div>
-        <div className="sideHint" onMouseEnter={handleMouseEnter}></div>
-      </div>
 
-      <div className="wrapper">
-        <h1>{selectedChapterContent}</h1>
+        <div className="wrapper">
+          <h1>{selectedChapterContent}</h1>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
