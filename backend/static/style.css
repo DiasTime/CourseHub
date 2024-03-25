@@ -12,7 +12,8 @@ body {
 }
 
 header {
-  width: 1180px;
+  width: 100%;
+  max-width: 1180px;
   margin: 0 auto;
   padding: 30px 0;
 }
@@ -37,12 +38,15 @@ header {
   padding: 0;
 }
 
-.add-course-wrapper {
-  width: 1180px;
-  margin: 50px auto;
+.add-course-wrapper,
+.add-chapter-wrapper {
+  width: calc(50% - 20px); /* Разделение на две части */
+  margin: 50px 10px;
+  float: left;
 }
 
-h1 {
+.add-course-wrapper h1,
+.add-chapter-wrapper h1 {
   text-align: center;
   margin-bottom: 20px;
   font-size: 32px;

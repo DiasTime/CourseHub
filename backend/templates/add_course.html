@@ -18,44 +18,45 @@
             </div>
         </div>
     </header>
-    <div class="add-course-wrapper">
-        <h1>Добавление курса</h1>
-        <form action="/add_course" method="post">
-            <label for="title">Название курса:</label>
-            <input type="text" id="title" name="title" required><br>
 
-            <label for="author">Автор:</label>
-            <input type="text" id="author" name="author" required><br>
+    <div class="wrapper">
+        <div class="add-course-wrapper">
+            <h1>Добавление курса</h1>
+            <form action="/add_course" method="post">
+                <label for="title">Название курса:</label>
+                <input type="text" id="title" name="title" required><br>
 
-            <label for="date">Дата:</label>
-            <input type="date" id="date" name="date" required><br>
+                <label for="author">Автор:</label>
+                <input type="text" id="author" name="author" required><br>
 
-            <label for="video_src">Ссылка на видео:</label>
-            <input type="text" id="video_src" name="video_src" required><br>
+                <label for="date">Дата:</label>
+                <input type="date" id="date" name="date" required><br>
 
-            <label for="course_name">Название:</label>
-            <input type="text" id="course_name" name="course_name" required><br>
+                <label for="video_src">Ссылка на видео:</label>
+                <input type="text" id="video_src" name="video_src" required><br>
 
-            <label for="course_slogan">Слоган:</label>
-            <input type="text" id="course_slogan" name="course_slogan" required><br>
+                <label for="course_name">Название:</label>
+                <input type="text" id="course_name" name="course_name" required><br>
 
-          
+                <label for="course_slogan">Слоган:</label>
+                <input type="text" id="course_slogan" name="course_slogan" required><br>
 
+                <button type="button" onclick="addCourseDescription()">Добавить описание курса</button>
+                <div id="course_descriptions">
+                    <!-- Additional course description fields will be added here dynamically -->
+                </div>
 
+                <button type="submit">Добавить курс</button>
+            </form>
+        </div>
 
+        <div class="add-chapter-wrapper">
+            <h1>Добавление главы</h1>
             <div id="chapters">
                 <!-- JavaScript will dynamically add chapters here -->
             </div>
-            <div id="course_descriptions">
-                <!-- Additional course description fields will be added here dynamically -->
-            </div>
-            <button type="button" onclick="addCourseDescription()">Добавить описание курса</button><br>
-            <button type="button" onclick="addChapter()">Добавить главу</button><br>
-            <button type="submit">Добавить курс</button>
-            
-           
-            
-        </form>
+            <button type="button" onclick="addChapter()">Добавить главу</button>
+        </div>
     </div>
 
     <script>
@@ -65,34 +66,76 @@
             var nextChapterNum = chaptersDiv.children.length + 1;
 
             var chapterDiv = document.createElement('div');
+            chapterDiv.classList.add('chapter');
+
             chapterDiv.innerHTML = `
                 <label for="chapter_title_${nextChapterNum}">Заголовок главы ${nextChapterNum}:</label>
                 <input type="text" id="chapter_title_${nextChapterNum}" name="chapter_title_${nextChapterNum}" required><br>
                 
                 <label for="chapter_content_${nextChapterNum}">Содержание главы ${nextChapterNum}:</label>
                 <textarea id="chapter_content_${nextChapterNum}" name="chapter_content_${nextChapterNum}" required></textarea><br>
+                
+                <div id="chapter_blocks_${nextChapterNum}">
+                    <!-- Здесь будут добавляться блоки текста и ссылок на видео -->
+                </div>
             `;
+
+            var addTextButton = document.createElement('button');
+            addTextButton.textContent = 'Добавить блок текста';
+            addTextButton.type = 'button';
+            addTextButton.onclick = function() { addTextBlock(nextChapterNum); };
+            chapterDiv.appendChild(addTextButton);
+
+            var addVideoButton = document.createElement('button');
+            addVideoButton.textContent = 'Добавить видео с YouTube';
+            addVideoButton.type = 'button';
+            addVideoButton.onclick = function() { addVideoBlock(nextChapterNum); };
+            chapterDiv.appendChild(addVideoButton);
+
             chaptersDiv.appendChild(chapterDiv);
         }
-            function addCourseDescription() {
-                var descriptionsDiv = document.getElementById('course_descriptions');
-    
-                var nextDescriptionNum = descriptionsDiv.children.length + 1;
-    
-                var descriptionLabel = document.createElement('label');
-                descriptionLabel.setAttribute('for', `course_description_${nextDescriptionNum}`);
-                descriptionLabel.textContent = `Описание курса ${nextDescriptionNum}:`;
-                descriptionsDiv.appendChild(descriptionLabel);
-    
-                var descriptionTextarea = document.createElement('textarea');
-                descriptionTextarea.id = `course_description_${nextDescriptionNum}`;
-                descriptionTextarea.name = `course_description_${nextDescriptionNum}`;
-                descriptionTextarea.rows = 4;
-                descriptionTextarea.cols = 50;
-                descriptionTextarea.required = true;
-                descriptionsDiv.appendChild(descriptionTextarea);
-    
-                descriptionsDiv.appendChild(document.createElement('br'));
+
+        function addTextBlock(chapterNum) {
+            var chapterBlocksDiv = document.getElementById(`chapter_blocks_${chapterNum}`);
+
+            var textBlock = document.createElement('div');
+            textBlock.innerHTML = `
+                <label for="chapter_text_${chapterNum}_${chapterBlocksDiv.children.length + 1}">Текст:</label>
+                <textarea id="chapter_text_${chapterNum}_${chapterBlocksDiv.children.length + 1}" name="chapter_text_${chapterNum}_${chapterBlocksDiv.children.length + 1}" rows="4" cols="50" required></textarea><br>
+            `;
+            chapterBlocksDiv.appendChild(textBlock);
+        }
+
+        function addVideoBlock(chapterNum) {
+            var chapterBlocksDiv = document.getElementById(`chapter_blocks_${chapterNum}`);
+
+            var videoBlock = document.createElement('div');
+            videoBlock.innerHTML = `
+                <label for="chapter_video_${chapterNum}_${chapterBlocksDiv.children.length + 1}">Ссылка на видео (YouTube):</label>
+                <input type="text" id="chapter_video_${chapterNum}_${chapterBlocksDiv.children.length + 1}" name="chapter_video_${chapterNum}_${chapterBlocksDiv.children.length + 1}" required><br>
+            `;
+            chapterBlocksDiv.appendChild(videoBlock);
+        }
+
+        function addCourseDescription() {
+            var descriptionsDiv = document.getElementById('course_descriptions');
+
+            var nextDescriptionNum = descriptionsDiv.children.length + 1;
+
+            var descriptionLabel = document.createElement('label');
+            descriptionLabel.setAttribute('for', `course_description_${nextDescriptionNum}`);
+            descriptionLabel.textContent = `Описание курса ${nextDescriptionNum}:`;
+            descriptionsDiv.appendChild(descriptionLabel);
+
+            var descriptionTextarea = document.createElement('textarea');
+            descriptionTextarea.id = `course_description_${nextDescriptionNum}`;
+            descriptionTextarea.name = `course_description_${nextDescriptionNum}`;
+            descriptionTextarea.rows = 4;
+            descriptionTextarea.cols = 50;
+            descriptionTextarea.required = true;
+            descriptionsDiv.appendChild(descriptionTextarea);
+
+            descriptionsDiv.appendChild(document.createElement('br'));
         }
     </script>
 </body>
