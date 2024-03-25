@@ -31,12 +31,19 @@ const Course = () => {
     (item) => item.title == selectedChapter,
   )?.content;
 
+  const nextChapter = () => {
+    const currentIndex = currentCourse?.chapters.findIndex((item) => item.title == selectedChapter);
+    if (currentIndex !== -1 && currentIndex < currentCourse?.chapters.length - 1) {
+      setSelectChapter(currentCourse?.chapters[currentIndex + 1].title);
+    }
+  };
+
   return (
     <>
       <div className="courseLession">
         <div className="sidebar" onMouseLeave={handleMouseLeave}>
           <div className={`sideMenu ${isSidebarVisible ? 'sideMenu-visible' : ''}`}>
-            <h3 className="course_name">{currentCourse.course_name}</h3>
+            <h3 className="course_name">{currentCourse?.course_name}</h3>
             {currentCourse?.chapters.map((item) => (
               <li
                 className={`chapterItem ${selectedChapter === item.title ? 'active_chapter' : ''}`}
@@ -53,6 +60,7 @@ const Course = () => {
 
         <div className="wrapper">
           <h1>{selectedChapterContent}</h1>
+          <button onClick={nextChapter}>Next Chapter</button>
         </div>
       </div>
     </>
