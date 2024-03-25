@@ -41,11 +41,11 @@
                 <label for="course_slogan">Слоган:</label>
                 <input type="text" id="course_slogan" name="course_slogan" required><br>
 
-                <button type="button" onclick="addCourseDescription()">Добавить описание курса</button>
+                
                 <div id="course_descriptions">
                     <!-- Additional course description fields will be added here dynamically -->
                 </div>
-
+                <button type="button" onclick="addCourseDescription()">Добавить описание курса</button>
                 <button type="submit">Добавить курс</button>
             </form>
         </div>
@@ -60,14 +60,17 @@
     </div>
 
     <script>
+        var chapter_texts = [];
+        var chapter_videos = [];
+    
         function addChapter() {
             var chaptersDiv = document.getElementById('chapters');
-
+    
             var nextChapterNum = chaptersDiv.children.length + 1;
-
+    
             var chapterDiv = document.createElement('div');
             chapterDiv.classList.add('chapter');
-
+    
             chapterDiv.innerHTML = `
                 <label for="chapter_title_${nextChapterNum}">Заголовок главы ${nextChapterNum}:</label>
                 <input type="text" id="chapter_title_${nextChapterNum}" name="chapter_title_${nextChapterNum}" required><br>
@@ -79,54 +82,65 @@
                     <!-- Здесь будут добавляться блоки текста и ссылок на видео -->
                 </div>
             `;
-
+    
             var addTextButton = document.createElement('button');
             addTextButton.textContent = 'Добавить блок текста';
             addTextButton.type = 'button';
             addTextButton.onclick = function() { addTextBlock(nextChapterNum); };
             chapterDiv.appendChild(addTextButton);
-
+    
             var addVideoButton = document.createElement('button');
             addVideoButton.textContent = 'Добавить видео с YouTube';
             addVideoButton.type = 'button';
             addVideoButton.onclick = function() { addVideoBlock(nextChapterNum); };
             chapterDiv.appendChild(addVideoButton);
-
+    
             chaptersDiv.appendChild(chapterDiv);
         }
-
+    
         function addTextBlock(chapterNum) {
             var chapterBlocksDiv = document.getElementById(`chapter_blocks_${chapterNum}`);
-
+    
             var textBlock = document.createElement('div');
             textBlock.innerHTML = `
                 <label for="chapter_text_${chapterNum}_${chapterBlocksDiv.children.length + 1}">Текст:</label>
                 <textarea id="chapter_text_${chapterNum}_${chapterBlocksDiv.children.length + 1}" name="chapter_text_${chapterNum}_${chapterBlocksDiv.children.length + 1}" rows="4" cols="50" required></textarea><br>
             `;
             chapterBlocksDiv.appendChild(textBlock);
+    
+            var chapterText = document.getElementById(`chapter_text_${chapterNum}_${chapterBlocksDiv.children.length}`).value;
+            chapter_texts.push(chapterText);
         }
-
+    
         function addVideoBlock(chapterNum) {
             var chapterBlocksDiv = document.getElementById(`chapter_blocks_${chapterNum}`);
-
+    
             var videoBlock = document.createElement('div');
             videoBlock.innerHTML = `
                 <label for="chapter_video_${chapterNum}_${chapterBlocksDiv.children.length + 1}">Ссылка на видео (YouTube):</label>
-                <input type="text" id="chapter_video_${chapterNum}_${chapterBlocksDiv.children.length + 1}" name="chapter_video_${chapterNum}_${chapterBlocksDiv.children.length + 1}" required><br>
+                <input type="text" id="chapter_video_${chapterNum}_${chapterBlocksDiv.children.length + 1}" name="chapter_video_${chapterNum}_${chapterBlocksDiv.children.length + 1}" onchange="updateVideoLink(this)" required><br>
             `;
             chapterBlocksDiv.appendChild(videoBlock);
         }
-
+    
+        function updateVideoLink(input) {
+            var videoLink = input.value;
+            if (videoLink.includes('watch?v=')) {
+                var videoId = videoLink.split('watch?v=')[1];
+                input.value = 'https://www.youtube.com/embed/' + videoId;
+            }
+        }
+    
         function addCourseDescription() {
             var descriptionsDiv = document.getElementById('course_descriptions');
-
+    
             var nextDescriptionNum = descriptionsDiv.children.length + 1;
-
+    
             var descriptionLabel = document.createElement('label');
             descriptionLabel.setAttribute('for', `course_description_${nextDescriptionNum}`);
             descriptionLabel.textContent = `Описание курса ${nextDescriptionNum}:`;
             descriptionsDiv.appendChild(descriptionLabel);
-
+    
             var descriptionTextarea = document.createElement('textarea');
             descriptionTextarea.id = `course_description_${nextDescriptionNum}`;
             descriptionTextarea.name = `course_description_${nextDescriptionNum}`;
@@ -134,10 +148,11 @@
             descriptionTextarea.cols = 50;
             descriptionTextarea.required = true;
             descriptionsDiv.appendChild(descriptionTextarea);
-
+    
             descriptionsDiv.appendChild(document.createElement('br'));
         }
     </script>
+    
 </body>
 
 </html>

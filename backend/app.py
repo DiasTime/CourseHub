@@ -11,12 +11,15 @@ firebase_admin.initialize_app(cred)
 db = firestore.client()
 
 def convert_to_embed_url(video_url):
-    return video_url.replace("watch?v=", "embed/")
+    if "watch?v=" in video_url:
+        video_id = video_url.split("watch?v=")[1]
+        return f"https://www.youtube.com/embed/{video_id}"
+    return video_url
 
 def get_next_course_number():
     # Get the total number of documents in the 'courses' collection
     courses_ref = db.collection('courses')
-    return courses_ref.get().__len__() + 1
+    return len(courses_ref.get())
 
 @app.route('/')
 def index():
@@ -31,7 +34,6 @@ def add_course():
     video_embed_src = convert_to_embed_url(video_src)
     course_name = request.form['course_name']
     course_slogan = request.form['course_slogan']
-    # course_description = request.form['course_description']
     
     chapters = []
     for key, value in request.form.items():
@@ -39,14 +41,28 @@ def add_course():
             chapter_num = key.split('_')[-1]
             chapter_title = value
             chapter_content = request.form.get(f'chapter_content_{chapter_num}', '')
-            chapters.append({'title': chapter_title, 'content': chapter_content})
+            
+            # Fetching video links and text content for the chapter
+            chapter_videos = []
+            chapter_texts = []
+            for sub_key, sub_value in request.form.items():
+                if sub_key.startswith(f'chapter_video_{chapter_num}_'):
+                    chapter_videos.append(sub_value)
+                elif sub_key.startswith(f'chapter_text_{chapter_num}_'):
+                    chapter_texts.append(sub_value)
+            
+            chapters.append({
+                'title': chapter_title,
+                'content': chapter_content,
+                'videos': chapter_videos,
+                'texts': chapter_texts
+            })
 
     course_descriptions = []
     for key, value in request.form.items():
         if key.startswith('course_description_'):
             course_description_num = key.split('_')[-1]
-            course_description=request.form.get(f'course_description_{course_description_num}', '')
-            course_description = value
+            course_description = request.form.get(f'course_description_{course_description_num}', '')
             course_descriptions.append(course_description)
 
     # Get the courseId using the get_next_course_number function
@@ -61,7 +77,6 @@ def add_course():
         "video_embed_src": video_embed_src,
         "course_name": course_name,
         "course_slogan": course_slogan,
-        "course_description": course_description,
         "chapters": chapters,
         "course_descriptions": course_descriptions,
         "courseId": course_id  # Include courseId in the data
