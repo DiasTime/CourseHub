@@ -60,7 +60,20 @@ const Course = () => {
         </div>
 
         <div className="wrapper">
-          <h1 className="chapterContentWrapper">{selectedChapterContent}</h1>
+          <h2 className="course_name">{selectedChapter}</h2>
+          {currentCourse?.video_embed_src.length > 10 && (
+            <div className="youtube-video-container">
+              <iframe
+                width="560"
+                height="315"
+                src={currentCourse.video_embed_src}
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+            </div>
+          )}
+          <p className="chapterContentWrapper">{selectedChapterContent}</p>
           <button onClick={nextChapter}>Next Chapter</button>
         </div>
       </div>

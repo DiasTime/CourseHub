@@ -65,3 +65,8 @@
   color: #121212;
   font-weight: 500;
 }
+
+h2 .course_name {
+  padding: 0;
+  margin: 0;
+}
