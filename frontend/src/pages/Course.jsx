@@ -17,6 +17,12 @@ const Course = () => {
     const unsubscribe = onSnapshot(collectionRef, (querySnapshot) => {
       const items = querySnapshot.docs.map((doc) => doc.data());
       dispatch(setCourses(items));
+
+      // Set the first chapter as the selected chapter
+      const firstCourse = items[0];
+      if (firstCourse && firstCourse.chapters.length > 0) {
+        setSelectChapter(firstCourse.chapters[0].title);
+      }
     });
 
     return unsubscribe;
@@ -60,8 +66,23 @@ const Course = () => {
         </div>
 
         <div className="wrapper">
-          <h1 className="chapterContentWrapper">{selectedChapterContent}</h1>
-          <button onClick={nextChapter}>Next Chapter</button>
+          <h2 className="course_name">{selectedChapter}</h2>
+          {currentCourse?.video_embed_src.length > 10 && (
+            <div className="youtube-video-container">
+              <iframe
+                width="560"
+                height="315"
+                src={currentCourse.video_embed_src}
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+            </div>
+          )}
+          <p className="chapterContentWrapper">{selectedChapterContent}</p>
+          <button className="nextChapter" onClick={nextChapter}>
+            Next Chapter
+          </button>
         </div>
       </div>
     </>
